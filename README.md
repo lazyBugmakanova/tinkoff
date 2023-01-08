@@ -1,2 +1,0 @@
-# tinkoff
-vjvjhiehioeg
