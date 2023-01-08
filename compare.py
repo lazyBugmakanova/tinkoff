@@ -26,9 +26,9 @@ with open(args.one_dir, 'r') as input_file:
     for line in input_file:
         one_path, two_path = line.rstrip().split()
         with open(one_path, 'r') as file_one:
-            one_line = file_one.read()
+            one_line = re.sub(r'\s{4,}"""([^\"]*|\n*)*"""', '', re.sub(r'\s#.+', '', file_one.read()))
         with open(two_path, 'r') as file_two:
-            two_line = file_two.read()
+            two_line = re.sub(r'\s{4,}"""([^\"]*|\n*)*"""', '', re.sub(r'\s+#.+', '', file_two.read()))
         output = open(args.two_dir, "a+")
         output.write(f"{str(levenshtein_distance(one_line, two_line))}\n")
         output.close()
